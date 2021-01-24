@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 
 import { FETCH_PHONES_SUCCES } from "../containers/actionTypes";
-import Phones from "../containers/phones";
+
 
 // here we store all the phones
 
