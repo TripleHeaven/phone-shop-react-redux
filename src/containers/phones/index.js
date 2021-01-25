@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { useDispatch, useSelector } from "react-redux";
 
 import {fetchPhones} from "../actions";
+import {loadMorePhones} from '../actions';
 
 import {getPhones} from '../../selectors';
 
@@ -23,14 +24,15 @@ import {Link} from 'react-router-dom';
 export default function Phones() {
   //const count = useSelector(state => state.counter.count);
   const phones = useSelector(state => getPhones(state));
+  
   //console.log (phones);
-  const dispatch = useDispatch();
+  const dispatch  = useDispatch();
 
   //const count = useSelector(state => state.counter.count);
  
   useEffect (() => {
     dispatch(fetchPhones());
-
+    
   } , []);
   
   const renderPhone = (phone, index) => {
@@ -70,12 +72,14 @@ export default function Phones() {
   }
 
   return (
-    // {phones.map( (item) => (<div key = {item.id}>item</div>))}
+    <div>
     <div className='books row'>{phones.map((phone, index) => renderPhone(phone,index))}</div>
-  );
+    <div className='row'>
+      <div className='col-md-12'>
+        <button  onClick={() => dispatch(loadMorePhones())} className='pull-right btn btn-primary'>Load More</button>
+      </div>
+    </div>
+    </div>
 
-  // {days.map((ddd) => (
-  //   <Day day={ddd} key={ddd.dayId} />
-  // ))}
-  
+  );
 }

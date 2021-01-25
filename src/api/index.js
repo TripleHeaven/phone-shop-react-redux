@@ -7,3 +7,10 @@ export const fetchPhones = async () => {
     //reject ('e')
   })
 }
+
+export const loadMorePhones = async () => {
+  return new Promise((resolve, reject)=> {
+    resolve(phones)
+    //reject ('e')
+  })
+}
