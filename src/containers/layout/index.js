@@ -9,7 +9,7 @@ const routes = (
     </Switch>
 )
 
-const Layout = () => (
+const Layout = ({children}) => (
   <div className='view-container'>
     <div className='container'>
       <div className='row'>
@@ -17,7 +17,7 @@ const Layout = () => (
           Sidebar
         </div>
         <div className='col-md-9'>
-        {routes}
+        {children}
         </div>
       </div>
     </div>

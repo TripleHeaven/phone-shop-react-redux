@@ -9,6 +9,8 @@ import {getPhones} from '../../selectors';
 
 import * as R from 'ramda';
 import {Link} from 'react-router-dom';
+
+import Layout from '../layout';
 // class Phones extends Component {
 //   componentDidMount() {
 //     this.props.fetchPhones();
@@ -72,14 +74,14 @@ export default function Phones() {
   }
 
   return (
-    <div>
+    <Layout>
     <div className='books row'>{phones.map((phone, index) => renderPhone(phone,index))}</div>
     <div className='row'>
       <div className='col-md-12'>
         <button  onClick={() => dispatch(loadMorePhones())} className='pull-right btn btn-primary'>Load More</button>
       </div>
     </div>
-    </div>
+    </Layout>
 
   );
 }
