@@ -3,6 +3,8 @@ import {Switch , Route} from 'react-router';
 
 import Phones from '../phones';
 
+import Sidebar from "../../components/sidebar";
+
 const routes = (
   <Switch> 
     <Route path = '/' component = {Phones} exact/>
@@ -14,7 +16,7 @@ const Layout = ({children}) => (
     <div className='container'>
       <div className='row'>
         <div className='col-md-3'>
-          Sidebar
+          <Sidebar></Sidebar>
         </div>
         <div className='col-md-9'>
         {children}

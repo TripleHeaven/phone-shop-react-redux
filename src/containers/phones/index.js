@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {fetchPhones} from "../actions";
 import {loadMorePhones} from '../actions';
-
+import {addPhoneToBasket} from "../actions";
 import {getPhones} from '../../selectors';
 
 import * as R from 'ramda';
@@ -57,7 +57,7 @@ export default function Phones() {
             </h4>
             <p>{shortDescription}</p>
             <p className='itemButton'>
-              <button className='btn btn-primary'>
+              <button className='btn btn-primary' onClick={() => dispatch(addPhoneToBasket(phone.id))} >
                 Buy Now!
               </button>
               <Link

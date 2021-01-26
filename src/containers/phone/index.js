@@ -4,7 +4,9 @@ import { fetchPhoneById } from '../actions';
 import {connect} from 'react-redux';
 import { getPhoneById } from '../../selectors';
 import * as R from 'ramda';
-
+import {addPhoneToBasket} from "../actions";
+import BasketCart from '../../components/basketCart';
+import { Link } from 'react-router-dom';
 
 export default function Phones(props) {
   //const phone = useSelector(state => getPH)
@@ -71,8 +73,16 @@ export default function Phones(props) {
     )
   }
   const renderSidebar= () =>{
+    
     return(
-      <div>Sidebar</div>
+      <div><p className='lead'>Quick shop</p>
+      <BasketCart></BasketCart>
+      <div className='form-group'>
+        <h1>{phone.name}</h1>
+        <h2>${phone.price}</h2></div>
+        <Link to='/' className='btn btn-info btn-block'>Back to store</Link>
+        <button className='btn btn-succes btn-block' type='button' onClick={() => dispatch(addPhoneToBasket(phone.id))}>Add to cart</button>
+        </div>
     )
   }
   return (

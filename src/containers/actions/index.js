@@ -3,7 +3,7 @@
 import {FETCH_PHONES_SUCCES,
 FETCH_PHONES_START,
 FETCH_PHONES_FAILURE , LOAD_MORE_PHONES_SUCCES, LOAD_MORE_PHONES_FAILURE, LOAD_MORE_PHONES_START,
-FETCH_PHONE_BY_ID_FAILURE, FETCH_PHONE_BY_ID_SUCCES, FETCH_PHONE_BY_ID_START} from "../actionTypes";
+FETCH_PHONE_BY_ID_FAILURE, FETCH_PHONE_BY_ID_SUCCES, FETCH_PHONE_BY_ID_START, ADD_PHONE_TO_BASKET} from "../actionTypes";
 
 import {fetchPhones as fetchPhonesApi, loadMorePhones as loadMorePhonesApi,
 fetchPhoneById as fetchPhoneByIdApi} from '../../api/index';
@@ -71,4 +71,11 @@ export const fetchPhoneById = id => async dispatch => {
       error: true
     })
   }
+}
+
+export const addPhoneToBasket = id => dispatch => {
+  dispatch( {
+    type: ADD_PHONE_TO_BASKET,
+    payload: id,
+  })
 }
