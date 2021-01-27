@@ -6,6 +6,7 @@ import {fetchPhones} from "../actions";
 import {loadMorePhones} from '../actions';
 import {addPhoneToBasket} from "../actions";
 import {getPhones} from '../../selectors';
+import {fetchCategories} from "../actions";
 
 import * as R from 'ramda';
 import {Link} from 'react-router-dom';
@@ -34,7 +35,7 @@ export default function Phones() {
  
   useEffect (() => {
     dispatch(fetchPhones());
-    
+    dispatch(fetchCategories());
   } , []);
   
   const renderPhone = (phone, index) => {
