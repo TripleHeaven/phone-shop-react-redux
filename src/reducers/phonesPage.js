@@ -1,9 +1,10 @@
 import * as R from 'ramda';
 
-import {FETCH_PHONES_SUCCES, LOAD_MORE_PHONES_SUCCES} from "../containers/actionTypes";
+import {FETCH_PHONES_SUCCES, LOAD_MORE_PHONES_SUCCES, SEARCH_PHONE} from "../containers/actionTypes";
 
 const initialState = {
-  ids : []
+  ids : [],
+  search : ''
 }
 
 export default (state = initialState, {type, payload}) => {
@@ -14,8 +15,12 @@ export default (state = initialState, {type, payload}) => {
     case LOAD_MORE_PHONES_SUCCES:
     const ids = R.pluck('id', payload);  
     return R.merge(state, {ids : R.concat(state.ids, ids)});
-    
+    case SEARCH_PHONE:
+      return R.merge(state, {
+        search: payload
+      })    
     default: 
     return state;
   }
 }
+
