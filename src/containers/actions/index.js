@@ -4,7 +4,7 @@ import {FETCH_PHONES_SUCCES,
 FETCH_PHONES_START,
 FETCH_PHONES_FAILURE , LOAD_MORE_PHONES_SUCCES, LOAD_MORE_PHONES_FAILURE, LOAD_MORE_PHONES_START,
 FETCH_PHONE_BY_ID_FAILURE, FETCH_PHONE_BY_ID_SUCCES, FETCH_PHONE_BY_ID_START, ADD_PHONE_TO_BASKET, SEARCH_PHONE,
-FETCH_CATEGORIES_START, FETCH_CATEGORIES_SUCCES, FETCH_CATEGORIES_FAILURE} from "../actionTypes";
+FETCH_CATEGORIES_START, FETCH_CATEGORIES_SUCCES, FETCH_CATEGORIES_FAILURE, REMOVE_PHONE_FROM_BASKET, CLEAN_BASKET} from "../actionTypes";
 
 import {fetchPhones as fetchPhonesApi, loadMorePhones as loadMorePhonesApi,
 fetchPhoneById as fetchPhoneByIdApi, fetchCategories as fetchCategoriesApi} from '../../api/index';
@@ -111,4 +111,21 @@ export const fetchCategories =  () => async dispatch => {
       error : true,
     })
   }
+}
+
+export const removePhoneFromBasket = id => dispatch => {
+  dispatch( {
+    type: REMOVE_PHONE_FROM_BASKET,
+    payload: id,
+  })
+}
+export const cleanBasket = id => dispatch => {
+  dispatch( {
+    type: CLEAN_BASKET,
+    payload: id,
+  })
+}
+
+export const basketCheckout = phones => {
+  alert (JSON.stringify(phones));
 }

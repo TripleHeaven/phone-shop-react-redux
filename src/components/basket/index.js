@@ -1,13 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {connect} from 'react-redux';
 import { getTotalBasketPrice, getBasketPhonesWithCount } from '../../selectors';
 import * as R from 'ramda';
-
+import {removePhoneFromBasket, cleanBasket, basketCheckout} from '../../containers/actions'
+import { Link } from 'react-router-dom';
 const Basket = () => {
   const phones = useSelector (state => getBasketPhonesWithCount(state));
   const totalPrice = useSelector (state => getTotalBasketPrice(state));
+  const dispatch = useDispatch(); 
   const isBasketEmpty = R.isEmpty(phones)
   const renderContent = () => (
     <div>
@@ -25,7 +27,7 @@ const Basket = () => {
                 <td>{phone.name}</td>
                 <td>${phone.price}</td>
                 <td>{phone.count}</td>
-                <td><span className='delete-cart'></span></td>
+                <td><span className='delete-cart' onClick={() => dispatch(removePhoneFromBasket(phone.id))}></span></td>
               </tr>
             ))}
           </tbody>
@@ -40,7 +42,23 @@ const Basket = () => {
     </div>
   )
   const renderSidebar = () => (
-    <div>SideBar</div>
+    <div ><Link to ="/" className='btn btn-info'>
+      <span className='glyphicon glyphicon-info-sign'> </span>
+      <span>Continue Shopping!</span>
+     </Link>
+     {R.not(isBasketEmpty) && 
+     <div>
+       <button onClick={() => dispatch(cleanBasket())}
+       className = 'btn btn-danger'>
+         <span className='glyphicon glyphicon-trash'></span>
+         Clean cart
+       </button>
+       <button className='btn btn-succes' onClick={() => dispatch(basketCheckout(phones))}>
+          <span className='glyphicon glyphicon-envelope'></span>
+          Checkout
+       </button>
+       </div>}
+     </div>
   )
   return (
     <div className = "view-container">
