@@ -1,4 +1,5 @@
 import * as R from 'ramda';
+import basket from './components/basket';
 
 export const getPhoneById = (state, id) => R.prop(id, state.phones);
 
@@ -45,3 +46,19 @@ export const getTotalBasketPrice = state => {
 export const getCategories = state => R.values(state.categories);
 
 export const getActiveCategoryId = props => R.path(['match', 'params', 'id'], props);
+
+export const getBasketPhonesWithCount = state => {
+
+  const phoneCount = id => R.compose(
+    R.length,
+    R.filter(basketId => R.equals(id,basketId)))
+  (state.basket);
+  const phoneWithCount = phone => R.assoc('count', phoneCount(phone.id), phone);
+  const uniqueIds = R.uniq(state.basket);
+  const phones = R.compose (
+    R.map(phoneWithCount),
+    R.map(id => getPhoneById(state,id))
+  )(uniqueIds)
+
+  return phones;
+}
