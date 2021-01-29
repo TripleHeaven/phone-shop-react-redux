@@ -33,27 +33,7 @@ export const fetchPhones =  () => async dispatch => {
 }
 
 
-export const fetchCategories =  () => async dispatch => {
-  dispatch ({
-    type : FETCH_CATEGORIES_START
-  });
-  try {
-    const categories  = await fetchCategoriesApi();
-    dispatch (
-      {
-        type: FETCH_CATEGORIES_SUCCES,
-        payload: categories,
-      }
-    )
-  }
-  catch (err) {
-    dispatch({
-      type: FETCH_CATEGORIES_FAILURE,
-      payload : err,
-      error : true,
-    })
-  }
-}
+
 
 export const loadMorePhones =  () => async (dispatch, getState) => {
   const offset = getRenderedPhonesLength(getState());
@@ -109,4 +89,26 @@ export const searchPhone = text => dispatch => {
     type: SEARCH_PHONE,
     payload: text,
   })
+}
+
+export const fetchCategories =  () => async dispatch => {
+  dispatch ({
+    type : FETCH_CATEGORIES_START
+  });
+  try {
+    const categories  = await fetchCategoriesApi();
+    dispatch (
+      {
+        type: FETCH_CATEGORIES_SUCCES,
+        payload: categories,
+      }
+    )
+  }
+  catch (err) {
+    dispatch({
+      type: FETCH_CATEGORIES_FAILURE,
+      payload : err,
+      error : true,
+    })
+  }
 }

@@ -24,9 +24,10 @@ import Layout from '../layout';
 //   }
 // }
 
-export default function Phones() {
+export default function Phones(props) {
   //const count = useSelector(state => state.counter.count);
-  const phones = useSelector(state => getPhones(state));
+ 
+  const phones = useSelector(state=> getPhones(state, props));
   
   //console.log (phones);
   const dispatch  = useDispatch();

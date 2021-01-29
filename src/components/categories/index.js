@@ -13,9 +13,9 @@ import * as R from 'ramda';
 const Categories = (props) => {
   const categories = useSelector(state => getCategories(state));
 
-  console.log(categories);
+  
   const activeCategoryId = getActiveCategoryId(props);
-  console.log(activeCategoryId);
+  //console.log(activeCategoryId);
   const getActiveState = R.propEq('id', activeCategoryId);
   const renderCategory = (category, index) =>
   { 
@@ -58,24 +58,3 @@ const Categories = (props) => {
 export default  compose(withRouter,connect())(Categories);
 
 
-// function useCategories(props) {
-//   const categories = useSelector(getCategories());
-//   const activeCategoryId = useSelector(owngetActiveCategoryId);
-//   const dispatch = useDispatch();
-
-//   useEffect(() => {
-//     if (!hackerNews.data.length && !hackerNews.fetching) {
-//       dispatch(fetch({
-//         offset: 0,
-//         limit: 15,
-//       }));
-//     }    
-//   }, [hackerNews]);
-
-//   return hackerNews;
-// }
-
-// export default function HackerNews({ children, ...props }) {
-//   const hackerNews = useHackerNews(props);
-//   return children(hackerNews);
-// };

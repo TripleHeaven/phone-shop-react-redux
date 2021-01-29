@@ -6,6 +6,8 @@ import Search from "../search";
 
 import Categories from "../categories";
 
+
+
 const Sidebar= ({children}) => (
   <div>
   <BasketCart></BasketCart>

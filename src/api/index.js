@@ -27,6 +27,6 @@ export const fetchPhoneById = async (id) => {
 
 export const fetchCategories = async () => {
   return new Promise ((resolve, reject) => {
-    resolve (categories)
+    resolve (categories);
   })
 }
